@@ -19,7 +19,7 @@ function GuessInput({guessWord, setGuessWord}) {
       minLength={5}
       maxLength={5}
       pattern='[a-zA-Z]{5}'
-      onChange={(event) => setGuessWord(event.target.value)}
+      onChange={(event) => setGuessWord(event.target.value.toUpperCase())}
     />
   </form>);
 }
