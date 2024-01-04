@@ -1,6 +1,8 @@
 import React from 'react';
 import GuessInput from '../GuessInput/GuessInput';
 import GuessList from '../GuessList/GuessList';
+import WonBanner from '../WonBanner/WonBanner';
+import LostBanner from '../LostBanner/LostBanner';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
@@ -12,19 +14,28 @@ const answer = sample(WORDS);
 function Game() {
   const [guessWord, setGuessWord] = React.useState('');
   const [guessList, setGuessList] = React.useState([]);
+  const [gameStatus, setGameStatus] = React.useState('running');
   return <>
     <div className='guess-results'>
+      {/* <p>{gameStatus} {answer}</p> */}
       <GuessList guessList={guessList} answer={answer}/>
-      {/* {guessList.map((word) => (
-        <GuessList key={Math.floor(Math.random()*100)} word={word} />
-      ))} */}
     </div>
     <GuessInput
       guessWord={guessWord}
       setGuessWord={setGuessWord}
       guessList={guessList}
       setGuessList={setGuessList}
+      gameStatus={gameStatus}
+      setGameStatus={setGameStatus}
+      answer={answer}
     />
+    {gameStatus === 'won' && (
+      <WonBanner numOfGuesses={guessList.length} />
+    )}
+    {gameStatus === 'lost' && (
+      <LostBanner answer={answer} />
+    )}
+
   </>;
 }
 
