@@ -14,7 +14,7 @@ function Game() {
   const [guessList, setGuessList] = React.useState([]);
   return <>
     <div className='guess-results'>
-      <GuessList guessList={guessList} />
+      <GuessList guessList={guessList} answer={answer}/>
       {/* {guessList.map((word) => (
         <GuessList key={Math.floor(Math.random()*100)} word={word} />
       ))} */}
